@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  app:
+    container_name: ticket-market
+    image: ticket-market
+    build: ./
+    ports:
+      - "8085:8085"
+    depends_on:
+      - postgresqldb
+  postgresqldb:
+    image: postgres
+    ports:
+      - "5433:5433"
+    entrypoint:
+      -POSTGRES_PASSWORD=root123
+      -POSTGRES_USER=postgres
+      -POSTGRES_DB=cinema_db
